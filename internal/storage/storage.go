@@ -24,7 +24,7 @@ func New(conn *pgxpool.Pool) app.Storage {
 
 func (s *storage) AddBannerToSlot(ctx context.Context, bannerGUID, slotGUID *uuid.UUID) error {
 	sql := `
-		INSERT INTO banners_link_slots(guid, bannerGuid, slot_guid)
+		INSERT INTO banners_link_slots(guid, bannerGuid, slotGuid)
 		VALUES ($1, $2, $3);
 	`
 	_, err := s.conn.Exec(ctx, sql, uuid.New(), bannerGUID, slotGUID)
@@ -40,9 +40,9 @@ func (s *storage) FindLinkBannerAndSlot(
 	bannerGUID,
 	slotGUID *uuid.UUID) (*models.LinkBannerAndSlot, error) {
 	query := `
-		SELECT guid, bannerGuid, slot_guid
+		SELECT guid, bannerGuid, slotGuid
 		FROM banners_link_slots
-		WHERE bannerGuid = $1 AND slot_guid = $2
+		WHERE bannerGuid = $1 AND slotGuid = $2
 	`
 
 	var link models.LinkBannerAndSlot
@@ -62,7 +62,7 @@ func (s *storage) FindLinkBannerAndSlot(
 func (s *storage) RemoveBannerFromSlot(ctx context.Context, bannerGUID, slotGUID *uuid.UUID) error {
 	sql := `
 		DELETE FROM banners_link_slots
-		WHERE bannerGuid = $1 AND slot_guid = $2
+		WHERE bannerGuid = $1 AND slotGuid = $2
 	`
 	_, err := s.conn.Exec(ctx, sql, bannerGUID, slotGUID)
 	if err != nil {
@@ -78,9 +78,9 @@ func (s *storage) FindStatByParams(
 	slotGUID,
 	socialGroupGUID *uuid.UUID) (*models.Stat, error) {
 	query := `
-		SELECT guid, bannerGuid, slot_guid, social_group_guid, shows, clicks
+		SELECT guid, bannerGuid, slotGuid, socialGroupGuid, shows, clicks
 		FROM stats
-		WHERE bannerGuid = $1 AND slot_guid = $2 AND social_group_guid = $3
+		WHERE bannerGuid = $1 AND slotGuid = $2 AND socialGroupGuid = $3
 	`
 
 	var stat models.Stat
@@ -99,7 +99,7 @@ func (s *storage) FindStatByParams(
 
 func (s *storage) CreateStat(ctx context.Context, val *models.Stat) error {
 	sql := `
-		INSERT INTO stats(guid, bannerGuid, slot_guid, social_group_guid, shows, clicks)
+		INSERT INTO stats(guid, bannerGuid, slotGuid, socialGroupGuid, shows, clicks)
 		VALUES ($1, $2, $3, $4, $5, $6);
 	`
 	_, err := s.conn.Exec(ctx, sql, val.GUID, val.BannerGUID, val.SlotGUID, val.SocialGroupGUID, val.Shows, val.Clicks)
@@ -145,9 +145,9 @@ func (s *storage) FindStatsBySlotAndSocialGroup(
 	slotGUID,
 	statGUID *uuid.UUID) ([]*models.Stat, error) {
 	sql := `
-		SELECT guid, bannerGuid, slot_guid, social_group_guid, shows, clicks
+		SELECT guid, bannerGuid, slotGuid, socialGroupGuid, shows, clicks
 		FROM stats
-		WHERE slot_guid = $1 AND social_group_guid = $2
+		WHERE slotGuid = $1 AND socialGroupGuid = $2
 	`
 
 	var stats []*models.Stat
@@ -164,7 +164,7 @@ func (s *storage) FindBannersInSlot(ctx context.Context, slotGUID *uuid.UUID) ([
 	sql := `
 		SELECT bannerGuid
 		FROM banners_link_slots
-		WHERE slot_guid = $1
+		WHERE slotGuid = $1
 	`
 
 	var bannersGUIDs []*uuid.UUID

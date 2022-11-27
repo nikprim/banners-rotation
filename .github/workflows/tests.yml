@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+
+env:
+  GO111MODULE: "on"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.17.*
+
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Create .env
+        run: cp .env.dist .env
+
+      - name: make build-binary
+        run: make build-binary
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.17.*
+
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Create .env
+        run: cp .env.dist .env
+
+      - name: make lint
+        run: make lint
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.17.*
+
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Create .env
+        run: cp .env.dist .env
+
+      - name: make test
+        run: make test
+
+  integration-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.17.*
+
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Create .env
+        run: cp .env.dist .env
+
+      - name: Create .env.test
+        run: cp .env.test.dist .env.test
+
+      - name: make integration-tests
+        run: make integration-tests

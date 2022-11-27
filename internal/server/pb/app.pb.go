@@ -192,7 +192,7 @@ type BannerAndSlotRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	BannerGuid string `protobuf:"bytes,1,opt,name=bannerGuid,json=bannerGuid,proto3" json:"bannerGuid,omitempty"`
-	SlotGuid   string `protobuf:"bytes,2,opt,name=slot_guid,json=slotGuid,proto3" json:"slot_guid,omitempty"`
+	SlotGuid   string `protobuf:"bytes,2,opt,name=slotGuid,json=slotGuid,proto3" json:"slotGuid,omitempty"`
 }
 
 func (x *BannerAndSlotRequest) Reset() {
@@ -247,8 +247,8 @@ type AddClickRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	BannerGuid      string `protobuf:"bytes,1,opt,name=bannerGuid,json=bannerGuid,proto3" json:"bannerGuid,omitempty"`
-	SlotGuid        string `protobuf:"bytes,2,opt,name=slot_guid,json=slotGuid,proto3" json:"slot_guid,omitempty"`
-	SocialGroupGuid string `protobuf:"bytes,3,opt,name=social_group_guid,json=socialGroupGuid,proto3" json:"social_group_guid,omitempty"`
+	SlotGuid        string `protobuf:"bytes,2,opt,name=slotGuid,json=slotGuid,proto3" json:"slotGuid,omitempty"`
+	SocialGroupGuid string `protobuf:"bytes,3,opt,name=socialGroupGuid,json=socialGroupGuid,proto3" json:"socialGroupGuid,omitempty"`
 }
 
 func (x *AddClickRequest) Reset() {
@@ -309,8 +309,8 @@ type SlotAndSocialGroupRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SlotGuid        string `protobuf:"bytes,1,opt,name=slot_guid,json=slotGuid,proto3" json:"slot_guid,omitempty"`
-	SocialGroupGuid string `protobuf:"bytes,2,opt,name=social_group_guid,json=socialGroupGuid,proto3" json:"social_group_guid,omitempty"`
+	SlotGuid        string `protobuf:"bytes,1,opt,name=slotGuid,json=slotGuid,proto3" json:"slotGuid,omitempty"`
+	SocialGroupGuid string `protobuf:"bytes,2,opt,name=socialGroupGuid,json=socialGroupGuid,proto3" json:"socialGroupGuid,omitempty"`
 }
 
 func (x *SlotAndSocialGroupRequest) Reset() {

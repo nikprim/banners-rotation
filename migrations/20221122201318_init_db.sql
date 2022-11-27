@@ -29,29 +29,29 @@ CREATE TABLE social_groups
 CREATE TABLE banners_link_slots
 (
     guid        uuid NOT NULL,
-    banner_guid uuid NOT NULL,
-    slot_guid   uuid NOT NULL,
+    bannerGuid uuid NOT NULL,
+    slotGuid   uuid NOT NULL,
     CONSTRAINT unq_banners_link_slots_guid UNIQUE (guid),
-    CONSTRAINT unq_banners_link_slots_row UNIQUE (banner_guid, slot_guid),
+    CONSTRAINT unq_banners_link_slots_row UNIQUE (bannerGuid, slotGuid),
     CONSTRAINT pk_banners_link_slots_guid PRIMARY KEY (guid),
-    CONSTRAINT fk_banners_link_slots_banner_guid FOREIGN KEY (banner_guid) REFERENCES banners (guid),
-    CONSTRAINT fk_banners_link_slots_slot_guid FOREIGN KEY (slot_guid) REFERENCES slots (guid)
+    CONSTRAINT fk_banners_link_slots_bannerGuid FOREIGN KEY (bannerGuid) REFERENCES banners (guid),
+    CONSTRAINT fk_banners_link_slots_slotGuid FOREIGN KEY (slotGuid) REFERENCES slots (guid)
 );
 
 CREATE TABLE stats
 (
     guid              uuid NOT NULL,
-    banner_guid       uuid NOT NULL,
-    slot_guid         uuid NOT NULL,
-    social_group_guid uuid NOT NULL,
+    bannerGuid       uuid NOT NULL,
+    slotGuid         uuid NOT NULL,
+    socialGroupGuid uuid NOT NULL,
     shows             int  NOT NULL,
     clicks            int  NOT NULL,
     CONSTRAINT unq_stats_guid UNIQUE (guid),
-    CONSTRAINT unq_stats_row UNIQUE (banner_guid, slot_guid, social_group_guid),
+    CONSTRAINT unq_stats_row UNIQUE (bannerGuid, slotGuid, socialGroupGuid),
     CONSTRAINT pk_stats_guid PRIMARY KEY (guid),
-    CONSTRAINT fk_stats_banner_guid FOREIGN KEY (banner_guid) REFERENCES banners (guid),
-    CONSTRAINT fk_stats_slot_guid FOREIGN KEY (slot_guid) REFERENCES slots (guid),
-    CONSTRAINT fk_stats_social_group_guid FOREIGN KEY (social_group_guid) REFERENCES social_groups (guid)
+    CONSTRAINT fk_stats_bannerGuid FOREIGN KEY (bannerGuid) REFERENCES banners (guid),
+    CONSTRAINT fk_stats_slotGuid FOREIGN KEY (slotGuid) REFERENCES slots (guid),
+    CONSTRAINT fk_stats_socialGroupGuid FOREIGN KEY (socialGroupGuid) REFERENCES social_groups (guid)
 );
 
 INSERT INTO slots(guid, name)
@@ -76,7 +76,7 @@ VALUES ('00000000-0000-0000-2222-000000000001', 'social group 1'),
        ('00000000-0000-0000-2222-000000000004', 'social group 4'),
        ('00000000-0000-0000-2222-000000000005', 'social group 5');
 
-INSERT INTO banners_link_slots(guid, banner_guid, slot_guid)
+INSERT INTO banners_link_slots(guid, bannerGuid, slotGuid)
 VALUES (uuid_generate_v4(), '00000000-0000-0000-1111-000000000001', '00000000-0000-0000-0000-000000000001'),
 
        (uuid_generate_v4(), '00000000-0000-0000-1111-000000000001', '00000000-0000-0000-0000-000000000002'),

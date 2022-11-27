@@ -15,8 +15,8 @@ const (
 
 type Event struct {
 	Type            EventType `json:"type"`
-	BannerGUID      uuid.UUID `json:"banner_guid"`
-	SlotGUID        uuid.UUID `json:"slot_guid"`
-	SocialGroupGUID uuid.UUID `json:"social_group_guid"`
+	BannerGUID      uuid.UUID `json:"bannerGuid"`
+	SlotGUID        uuid.UUID `json:"slotGuid"`
+	SocialGroupGUID uuid.UUID `json:"socialGroupGuid"`
 	Datetime        time.Time `json:"datetime"`
 }

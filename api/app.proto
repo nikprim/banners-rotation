@@ -21,19 +21,19 @@ message SocialGroup {
 }
 
 message BannerAndSlotRequest {
-  string banner_guid = 1;
-  string slot_guid = 2;
+  string bannerGuid = 1;
+  string slotGuid = 2;
 }
 
 message AddClickRequest {
-  string banner_guid = 1;
-  string slot_guid = 2;
-  string social_group_guid = 3;
+  string bannerGuid = 1;
+  string slotGuid = 2;
+  string socialGroupGuid = 3;
 }
 
 message SlotAndSocialGroupRequest {
-  string slot_guid = 1;
-  string social_group_guid = 2;
+  string slotGuid = 1;
+  string socialGroupGuid = 2;
 }
 
 service BannerRotatorService {

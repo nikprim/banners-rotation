@@ -48,11 +48,11 @@ func New(storage Storage, producer *rmq.Producer) Application {
 
 func (a *app) sendEventToQueue(ctx context.Context, message *rmqModels.Event) {
 	l := log.With().Fields(map[string]interface{}{
-		"type":              message.Type,
-		"bannerGuid":        message.BannerGUID.String(),
-		"slot_guid":         message.SlotGUID.String(),
-		"social_group_guid": message.SocialGroupGUID.String(),
-		"datetime":          message.Datetime.Format(time.RFC3339),
+		"type":            message.Type,
+		"bannerGuid":      message.BannerGUID.String(),
+		"slotGuid":        message.SlotGUID.String(),
+		"socialGroupGuid": message.SocialGroupGUID.String(),
+		"datetime":        message.Datetime.Format(time.RFC3339),
 	}).Logger()
 
 	body, err := json.Marshal(message)
