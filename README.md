@@ -1,4 +1,6 @@
 # Banners-rotation
+[![Go Report Card](https://goreportcard.com/badge/nikprim/banners-rotation)](https://goreportcard.com/report/nikprim/banners-rotation)
+[![CI](https://github.com/nikprim/banners-rotation/actions/workflows/tests.yml/badge.svg)](https://github.com/nikprim/banners-rotation/actions/workflows/tests.yml)
 ## Начало
 ### Скопировать проект
 ```git clone git@github.com:nikprim/banners-rotation.git```
