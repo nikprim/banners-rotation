@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package banner_rotator;
+option go_package = "./;pb";
+
+import "google/protobuf/empty.proto";
+
+message Slot {
+  string guid = 1;
+  string name = 2;
+}
+
+message Banner {
+  string guid = 1;
+  string name = 2;
+}
+
+message SocialGroup {
+  string guid = 1;
+  string name = 2;
+}
+
+message BannerAndSlotRequest {
+  string banner_guid = 1;
+  string slot_guid = 2;
+}
+
+message AddClickRequest {
+  string banner_guid = 1;
+  string slot_guid = 2;
+  string social_group_guid = 3;
+}
+
+message SlotAndSocialGroupRequest {
+  string slot_guid = 1;
+  string social_group_guid = 2;
+}
+
+service BannerRotatorService {
+  rpc AddBannerToSlot(BannerAndSlotRequest) returns (google.protobuf.Empty);
+  rpc RemoveBannerFromSlot(BannerAndSlotRequest) returns (google.protobuf.Empty);
+  rpc AddClick(AddClickRequest) returns (google.protobuf.Empty);
+  rpc GetBanner(SlotAndSocialGroupRequest) returns (Banner);
+}

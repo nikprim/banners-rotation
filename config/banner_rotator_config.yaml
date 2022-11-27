@@ -1,0 +1,13 @@
+logger:
+  level: ${BANNER_ROTATOR_LOGGER_LEVEL}
+
+psql:
+  uri: ${POSTGRES_URI}
+
+grpc:
+  host: ${BANNER_ROTATOR_GRPC_HOST}
+  port: ${BANNER_ROTATOR_GRPC_PORT}
+
+producer:
+  uri: ${AMQP_URI}
+  queue: ${BANNER_ROTATOR_PRODUCER_QUEUE}
