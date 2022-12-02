@@ -38,7 +38,7 @@ test:
 
 install-lint-deps:
 ifeq (,$(wildcard ./bin/golangci-lint))
-	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b ./bin v1.41.1
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b ./bin v1.42.0
 endif
 
 lint: install-lint-deps

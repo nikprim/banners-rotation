@@ -1,8 +1,6 @@
 package apitest
 
 import (
-	"time"
-
 	"github.com/nikprim/banners-rotation/internal/app"
 	"github.com/nikprim/banners-rotation/internal/server/pb"
 )
@@ -16,7 +14,6 @@ func (s *APISuite) TestGetBannerSuccess() {
 	})
 	s.Require().NoError(err)
 	s.Require().NotNil(banner)
-	time.Sleep(time.Millisecond * 100) // в CI проверка количества сообщений падает
 	s.Require().Equal(countMessage+1, s.GetCountMessageInAMQP())
 }
 
