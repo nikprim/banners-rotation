@@ -1,0 +1,44 @@
+version: "3"
+
+volumes:
+  db:
+  rabbitmq:
+
+services:
+  db:
+    restart: always
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  rabbitmq:
+    restart: always
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq/
+
+  migrator:
+    build:
+      context: ../.
+      dockerfile: ./build/migration.Dockerfile
+    command: ["waitforit", "-address=db:5432", "-timeout=120", "-retry=1000", "--", "goose", "--dir", "/migrations", "postgres", "${POSTGRES_URI}", "up"]
+    volumes:
+      - ../migrations:/migrations
+    env_file:
+      - ../.env
+    depends_on:
+      - db
+
+  app:
+    build:
+      context: ../.
+      dockerfile: ./build/app.Dockerfile
+    command: ["waitforit", "-address=rabbitmq:15672", "-timeout=120", "-retry=1000", "--", "/opt/banner-rotator/banner-rotator-app", "serve-http", "--config", "/etc/banner-rotator/config.yaml"]
+    volumes:
+      - ../.:/go/src/
+    ports:
+      - "${BANNER_ROTATOR_GRPC_PORT}:${BANNER_ROTATOR_GRPC_PORT}"
+    env_file:
+      - ../.env
+    depends_on:
+      - db
+      - rabbitmq
+      - migrator

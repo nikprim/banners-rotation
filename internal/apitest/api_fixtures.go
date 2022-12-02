@@ -1,0 +1,26 @@
+package apitest
+
+const (
+	SlotGUID1        = "00000000-0000-0000-0000-000000000001"
+	SlotGUID5        = "00000000-0000-0000-0000-000000000005"
+	SlotWithoutLinks = "00000000-0000-0000-0000-000000000006"
+	SlotGUIDNotFound = "00000000-0000-0000-0000-000000000009"
+
+	BannerGUID1        = "00000000-0000-0000-1111-000000000001"
+	BannerGUID5        = "00000000-0000-0000-1111-000000000005"
+	BannerGUIDNotFound = "00000000-0000-0000-1111-000000000009"
+
+	SocialGroupGUID1        = "00000000-0000-0000-2222-000000000001"
+	SocialGroupGUIDNotFound = "00000000-0000-0000-2222-000000000009"
+)
+
+type FixtureLink struct {
+	bannerGUID string
+	slotGUID   string
+}
+
+var (
+	Link1 = FixtureLink{bannerGUID: BannerGUID1, slotGUID: SlotGUID1}
+
+	LinkNotFound1 = FixtureLink{bannerGUID: BannerGUID5, slotGUID: SlotGUID1}
+)
